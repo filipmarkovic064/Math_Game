@@ -6,6 +6,7 @@ class Program {
         mainMenu(history);
     }
     static public int getInput()
+    //Try catch to catch all invalid input (non-int)
     {
         int answer = 0;
         try 
@@ -42,6 +43,7 @@ class Program {
         }
     }
     static public void play(List<String> history)
+    //Allowing the user to choose the amount of questions and randomizing the operations/numbers they get
     {
         Console.Clear();
         Random rand = new Random();
@@ -69,7 +71,8 @@ class Program {
             }
             else
             {
-                Console.WriteLine("Wrong, press any key to continue!");
+                Console.WriteLine($"Wrong, the correct answer is {calculate(a,b,op)}");
+                Console.WriteLine("Press any key to continue!");
                 Console.ReadKey();
             }
         }
@@ -81,7 +84,7 @@ class Program {
     }
     static public int calculate(int a, int b,  int opIndex)
     {
-        
+        //Calculation logic, no need to check if dividend is 0 because the numbers dont go below 1
         int answer = 0;
         char[] symbols = ['+', '-', '*', '/'];
         char operation = symbols[opIndex];
@@ -104,11 +107,12 @@ class Program {
     }
     static public void getHistory(List<String> history)
     {
+        //Saving the match history in a list which i then print out
         Console.Clear();
         Console.WriteLine("History!");
         for(int i = history.Count; i > 0; i--)
         {
-            Console.WriteLine($"Game #{history.Count-1}: {history[i-1]}");
+            Console.WriteLine($"Game #{i}: {history[i-1]}");
         }
         Console.WriteLine("Press any button to go back to Main Menu");
         Console.ReadKey();
